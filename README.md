@@ -239,15 +239,41 @@ spec:
       volumes:
         - name: storage
           persistantVolumeClaim:
-            claimName: mongo-db
+            claimName: mongo-db-claim
 ```
 ## Create Persistant Volume and PV Claim
+### Persistant Volume
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv001
+spec:
+  capacity:
+    storage: 256Mi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  claimRef:
+    name: mongo-db-claim
+    namespace: default
+  hostPath:
+    path: /data
+    type: Directory
+
+```
+### PV Claim
 ```
 ---
 apiVersion: v1
 kind: PersistantVolumeClaim
 metadata:
-  name: mongo-db
+  name: mongo-db-claim
 spec:
   accessModes:
     - ReadWriteOnce
