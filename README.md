@@ -263,7 +263,7 @@ spec:
     name: mongo-db-claim
     namespace: default
   hostPath:
-    path: /data
+    path: /data/db
     type: Directory
 
 ```
