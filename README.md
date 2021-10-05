@@ -253,6 +253,8 @@ spec:
     requests:
       storage: 256Mi
 ```
+To check this run the command `kubectl get pv`
+
 ## Connect the NodeApp and DB
 
 ### Once connected
