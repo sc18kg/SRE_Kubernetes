@@ -128,10 +128,10 @@ spec:
 
 ### Check security of AWS EC2
 The `Port` will be shown next to the `Port 8080` so add this port to your inbound rules on the EC2 instance 
-`Type`: Custom TCP Rule
-`Protocol`: TCP
-`Port Range`: 30000-32767 (the port given to you by the kubectl get services command)
-`Source`: Custom 0.0.0.0/0 (Accessible via the internet)
+- `Type`: Custom TCP Rule
+- `Protocol`: TCP
+- `Port Range`: 30000-32767 (the port given to you by the kubectl get services command)
+- `Source`: Custom 0.0.0.0/0 (Accessible via the internet)
 
 ### Check the browser
 Head to the address `<ipv4_public_ip>:<ec2_port>`.
