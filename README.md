@@ -1,11 +1,16 @@
 # Kubernetes (K8)
+#[overview](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.c-sharpcorner.com%2Farticle%2Fgetting-started-with-kubernetes-part2%2F&psig=AOvVaw2BNbP_9jQlq6aBm3vwILFf&ust=1633524040072000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiyjbels_MCFQAAAAAdAAAAABAs)
 
 ## What is Kubernetes
-Kubernetes or K8 is an orchestration tool used to manage Containers and Micro-servies
-## Advantages
-- Self healing
-- Load balancer and service discovery
+Kubernetes or K8 is an orchestration tool used to manage Containers and Micro-servies. It is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation. It has a large, rapidly growing ecosystem. Kubernetes services, support, and tools are widely available.
 
+## Advantages
+- Service discovery and load balancing Kubernetes can expose a container using the DNS name or using their own IP address. If traffic to a container is high, Kubernetes is able to load balance and distribute the network traffic so that the deployment is stable.
+- Storage orchestration Kubernetes allows you to automatically mount a storage system of your choice, such as local storages, public cloud providers, and more.
+- Automated rollouts and rollbacks You can describe the desired state for your deployed containers using Kubernetes, and it can change the actual state to the desired state at a controlled rate. For example, you can automate Kubernetes to create new containers for your deployment, remove existing containers and adopt all their resources to the new container.
+- Automatic bin packing You provide Kubernetes with a cluster of nodes that it can use to run containerized tasks. You tell Kubernetes how much CPU and memory (RAM) each container needs. Kubernetes can fit containers onto your nodes to make the best use of your resources.
+- Self-healing Kubernetes restarts containers that fail, replaces containers, kills containers that don't respond to your user-defined health check, and doesn't advertise them to clients until they are ready to serve.
+- Secret and configuration management Kubernetes lets you store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys. You can deploy and update secrets and application configuration without rebuilding your container images, and without exposing secrets in your stack configuration.
 
 ## First steps in using K8
 1. Having a service broken down into using 1 or 2 microservices
@@ -13,16 +18,16 @@ Kubernetes or K8 is an orchestration tool used to manage Containers and Micro-se
 3. Orchestrate the containers using K8
 
 ## K8 Cheatsheet
-`kubectl`
-`kubectl --version`
-`kubectl get pods`
-`kubectl get srv/service`
-`kubectl get deploy/deployment`
-`kubectl describe pod {pod_ID}`
-`kubectl delete pod {pod_ID]`
-`kubectl delete svc/service {service_name}`
-`kubectl create -f yaml_file.yaml`
-`kubectl edit deploy {service_name}`
+- `kubectl`
+- `kubectl --version`
+- `kubectl get pods`
+- `kubectl get srv/service`
+- `kubectl get deploy/deployment`
+- `kubectl describe pod {pod_ID}`
+- `kubectl delete pod {pod_ID]`
+- `kubectl delete svc/service {service_name}`
+- `kubectl create -f yaml_file.yaml`
+- `kubectl edit deploy {service_name}`
 
 ## Enabling K8
 1. Head over to the `Docker Desktop`
@@ -32,9 +37,11 @@ Kubernetes or K8 is an orchestration tool used to manage Containers and Micro-se
 5. A pop-up should appear, click `install` and now wait for kubernetes to load this may take a while
 
 ## Types of Service
-- `Cluster IP`:
-- `NodePort`: 
-- `LoadBalancer`:
+- `Cluster IP`: Exposes a service which is only accessible from within the cluster.
+- `NodePort`: Exposes a service via a static port on each node's IP.
+- `LoadBalancer`:  Exposes the service via the cloud provider's load balancer.
+- `ExternalName`: Maps a service to a predefined externalName field by returning a value for the CNAME record.
+
 
 ## Creating a Deployment with K8
 ```
@@ -101,16 +108,16 @@ spec:
 ## AWS to Run image - minikube
 
 ### Install minikube and start the server
-`minikube start --vm-driver=none`
-`minikube status`
+1. `minikube start --vm-driver=none`
+2. `minikube status`
 
 ### Run the images as services
-`kubectl create -f nginx-deployment.yaml` - This will create the pods and the number of replicas set in the `.yaml` file
-`kubectl run nginx-deployment --image=sc18kg/sre_customised_nginx --port=8080`
-`kubectl expose deployment nginx-deployment --type=NodePort` - This will create a service for the pods to be exposed
+3. `kubectl create -f nginx-deployment.yaml` - This will create the pods and the number of replicas set in the `.yaml` file
+4. `kubectl run nginx-deployment --image=sc18kg/sre_customised_nginx --port=8080`
+5. `kubectl expose deployment nginx-deployment --type=NodePort` - This will create a service for the pods to be exposed
 
 ### Check the service is running 
-`kubectl get services`
+6. `kubectl get services`
 
 ### Check security of AWS EC2
 The `Port` will be shown next to the `Port 8080` so add this port to your inbound rules on the EC2 instance 
