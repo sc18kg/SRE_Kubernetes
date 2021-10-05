@@ -271,7 +271,7 @@ spec:
 ```
 ---
 apiVersion: v1
-kind: PersistantVolumeClaim
+kind: PersistentVolumeClaim
 metadata:
   name: mongo-db-claim
 spec:
