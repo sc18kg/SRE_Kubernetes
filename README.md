@@ -105,9 +105,9 @@ spec:
 `minikube status`
 
 ### Run the images as services
-
+`kubectl create -f nginx-deployment.yaml` - This will create the pods and the number of replicas set in the `.yaml` file
 `kubectl run nginx-deployment --image=sc18kg/sre_customised_nginx --port=8080`
-`kubectl expose deployment nginx-deployment --type=NodePort`
+`kubectl expose deployment nginx-deployment --type=NodePort` - This will create a service for the pods to be exposed
 
 ### Check the service is running 
 `kubectl get services`
