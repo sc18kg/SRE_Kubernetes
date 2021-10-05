@@ -34,6 +34,7 @@ Kubernetes lets you store and manage sensitive information, such as passwords, O
 - `kubectl delete svc/service {service_name}`
 - `kubectl create -f yaml_file.yaml`
 - `kubectl edit deploy {service_name}`
+- `kubectl rollout restart deployment`
 
 ## Enabling K8
 1. Head over to the `Docker Desktop`
