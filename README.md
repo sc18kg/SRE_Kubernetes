@@ -135,5 +135,124 @@ The `Port` will be shown next to the `Port 8080` so add this port to your inboun
 ### Check the browser
 Head to the address `<ipv4_public_ip>:<ec2_port>`.
 
-### App and Database
+## NodeApp and Database
 ![Structure](https://amlanscloud.com/static/bbc5a55e5f99dd01781ba3fd3c2ac32c/88ed5/kubernetes_archi.png)
+
+## Creating a node-deploy.yaml
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+
+spec:
+  selector:
+    matchLabels:
+      app: node
+  replicas: 3
+
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+        - name: node
+          image: ahskhan/eng89_node_prod
+
+          ports:
+            - containerPort: 3000
+
+```
+To run this use `kubectl create -f node_deploy.yaml`
+
+## Create Horizontal Scaling
+
+```
+# Create a file to create an auto scaling group
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+
+metadata:
+  name: sparta-node-app-deploy
+  namespace: default
+
+spec:
+  maxReplicas: 9
+  minReplicas: 3
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: node
+
+  targetCPUUtilizationPercentage: 50
+
+```
+Run `kubectl create -f node_hpa.yaml` then to check use `kubectl get hpa` to check its live
+
+## Create deploy and service for Mongo
+### Service
+```
+# Create the Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec: 
+  selector:
+    app: mongo
+  ports:
+    - port: 27017
+      targetPort: 27017
+```
+### Deployment
+```
+# Create the Deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo
+        
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: storage
+              mountPath: /data/db
+      volumes:
+        - name: storage
+          persistantVolumeClaim:
+            claimName: mongo-db
+```
+## Create Persistant Volume and PV Claim
+```
+---
+apiVersion: v1
+kind: PersistantVolumeClaim
+metadata:
+  name: mongo-db
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
+```
+## Connect the NodeApp and DB
+
+### Once connected
+Run the command `kubectl exec node env node seeds/seed.js` which will seed the database on the `/posts` page
