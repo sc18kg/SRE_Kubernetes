@@ -136,5 +136,4 @@ The `Port` will be shown next to the `Port 8080` so add this port to your inboun
 Head to the address `<ipv4_public_ip>:<ec2_port>`.
 
 ### App and Database
-
 ![Structure](https://amlanscloud.com/static/bbc5a55e5f99dd01781ba3fd3c2ac32c/88ed5/kubernetes_archi.png)
