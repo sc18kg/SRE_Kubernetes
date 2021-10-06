@@ -1,4 +1,7 @@
 # Kubernetes (K8)
+
+![overall-kube](https://user-images.githubusercontent.com/74776086/136208758-b6b9f331-69b1-4c9e-b18e-72ffc9cb6dfd.png)
+
 ## Contents - (Steps in Chronological Order)
 * [Persistant Volume](#Persistant-Volume)
 * [Persistant Volume Claim](#PV-Claim)
