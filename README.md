@@ -4,8 +4,8 @@
 * [Persistant Volume Claim](#PV-Claim)
 * [Mongo Deploy](#Deployment)
 * [Mongo Service](#Service)
-* [Node Deploy](#Creating-a-node-deploy.yaml)
-* [Node Service](#Creating-a-Service-in-K8)
+* [Node Deploy](#Creating-a-NodeApp-Deployment)
+* [Node Service](#Creating-a-NodeApp-Service)
 
 ![overview](https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/getting-started-with-kubernetes-part2/Images/1.png)
 
@@ -149,7 +149,7 @@ Head to the address `<ipv4_public_ip>:<ec2_port>`.
 ## NodeApp and Database
 ![Structure](https://amlanscloud.com/static/bbc5a55e5f99dd01781ba3fd3c2ac32c/88ed5/kubernetes_archi.png)
 
-## Creating a node-deploy.yaml
+## Creating a NodeApp Deployment
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -177,6 +177,23 @@ spec:
 ```
 To run this use `kubectl create -f node_deploy.yaml`
 
+## Creating a NodeApp Service
+```
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node
+
+spec:
+  selector:
+    app: node
+  ports:
+    - port: 3000
+      targetPort : 3000
+  type: LoadBalancer
+
+```
 ## Create Horizontal Scaling
 
 ```
