@@ -353,6 +353,6 @@ spec:
 ```
 ### Interacting with the CronJob
 
-`kubectl create -f cronjob.yaml` - Create and deploy the CronJob
-`kubectl get cronjob` - Displays the created CronJob and gives the status
-`kubectl logs cronjob` - Displays the output of the CronJob
+- `kubectl create -f cronjob.yaml` - Create and deploy the CronJob
+- `kubectl get cronjob` - Displays the created CronJob and gives the status
+- `kubectl logs cronjob` - Displays the output of the CronJob
