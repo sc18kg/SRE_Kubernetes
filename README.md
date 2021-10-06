@@ -11,8 +11,6 @@
 * [Node Service](#Creating-a-NodeApp-Service)
 * [CronJob](#CronJob)
 
-![overview](https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/getting-started-with-kubernetes-part2/Images/1.png)
-
 ## What is Kubernetes
 Kubernetes or K8 is an orchestration tool used to manage Containers and Micro-servies. It is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation. It has a large, rapidly growing ecosystem. Kubernetes services, support, and tools are widely available.
 
