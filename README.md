@@ -1,5 +1,5 @@
 # Kubernetes (K8)
-## Steps in Order
+## Contents - (Steps in Chronological Order)
 * [Persistant Volume](#Persistant-Volume)
 * [Persistant Volume Claim](#PV-Claim)
 * [Mongo Deploy](#Deployment)
