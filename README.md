@@ -256,9 +256,6 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: slow
-  mountOptions:
-    - hard
-    - nfsvers=4.1
   claimRef:
     name: mongo-db-claim
     namespace: default
