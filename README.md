@@ -309,3 +309,32 @@ To check this run the command `kubectl get pv`
 
 ### Once connected
 Run the command `kubectl exec node env node seeds/seed.js` which will seed the database on the `/posts` page
+
+## Cronjob
+
+### Creating a CronJob
+```
+# Select the API - cronjob works as a batch process
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sre_cronjob
+
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sre_cronjob
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Thanks for using Kierons CronJob
+          restartPolicy: OnFailure
+
+```
