@@ -311,6 +311,19 @@ To check this run the command `kubectl get pv`
 Run the command `kubectl exec node env node seeds/seed.js` which will seed the database on the `/posts` page
 
 ## Cronjob
+### The CronJob Schedule Syntax
+```
+#      ┌────────────────── timezone (optional)
+#      |      ┌───────────── minute (0 - 59)
+#      |      │ ┌───────────── hour (0 - 23)
+#      |      │ │ ┌───────────── day of the month (1 - 31)
+#      |      │ │ │ ┌───────────── month (1 - 12)
+#      |      │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+#      |      │ │ │ │ │                                   7 is also Sunday on some systems)
+#      |      │ │ │ │ │
+#      |      │ │ │ │ │
+# CRON_TZ=UTC * * * * *
+```
 
 ### Creating a CronJob
 ```
@@ -338,3 +351,8 @@ spec:
           restartPolicy: OnFailure
 
 ```
+### Interacting with the CronJob
+
+`kubectl create -f cronjob.yaml` - Create and deploy the CronJob
+`kubectl get cronjob` - Displays the created CronJob and gives the status
+`kubectl logs cronjob` - Displays the output of the CronJob
