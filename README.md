@@ -1,4 +1,12 @@
 # Kubernetes (K8)
+## Steps in Order
+* [Persistant Volume](#Persistant-Volume)
+* [Persistant Volume Claim](#PV-Claim)
+* [Mongo Deploy](#Deployment)
+* [Mongo Service](#Service)
+* [Node Deploy](#Creating-a-node-deploy.yaml)
+* [Node Service](#Creating-a-Service-in-K8)
+
 ![overview](https://csharpcorner-mindcrackerinc.netdna-ssl.com/article/getting-started-with-kubernetes-part2/Images/1.png)
 
 ## What is Kubernetes
